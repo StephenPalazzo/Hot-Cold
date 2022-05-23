@@ -1,0 +1,47 @@
+body {
+    background: #181818;
+    color: #ffffff;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#header {
+    background: #212121;
+    padding: 1em;
+    text-align: center;
+}
+
+#instructions {
+    padding: 4em;
+    text-align: center;
+    font-size: x-large;
+}
+
+#output {
+    padding: 5em;
+    text-align: center;
+    font-size: x-large;
+}
+
+#radioBtn {
+    display: inline-flex;
+    overflow: hidden;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    visibility: hidden;
+}
+
+.restartRadio {
+    display: none;
+}
+
+.restartLabel {
+    padding: 8px 14px;
+    font-size: x-large;
+    color: #fff;
+    cursor: pointer;
+}
+
+.unitInput:checked + .unitLabel {
+    background: #3d3d3d;
+}
