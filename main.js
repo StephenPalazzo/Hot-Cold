@@ -5,12 +5,15 @@ const restartBtn = document.getElementById('restart');
 const randWidth = Math.floor(Math.random() * (window.screen.width - 300) + 150);
 const randHeight = Math.floor(Math.random() * (window.screen.height - 300) + 150);
 let numOfClicks = 0;
+let gameOver = false;
 
 restartBtn.addEventListener('click', e => {
     document.location.reload();
 });
 
 document.addEventListener('click', e => {
+    if (gameOver) return;
+
     instructions.style.visibility = 'hidden';
 
     const clickedWidth = e.clientX; 
@@ -18,6 +21,7 @@ document.addEventListener('click', e => {
     numOfClicks++;
 
     if (Math.abs(randWidth - clickedWidth) < 50 && Math.abs(randHeight - clickedHeight) < 50) {
+        gameOver = true;
         hint.innerHTML = `You won in ${numOfClicks} number of clicks!<br> The location was ${randWidth}x${randHeight}.<br> Your location guessed was ${clickedWidth}x${clickedHeight}.`;
         radioBtnDiv.style.visibility = 'visible';
     } else if (Math.abs(randWidth - clickedWidth) < 100 && Math.abs(randHeight - clickedHeight) < 100) {
