@@ -1,9 +1,11 @@
-const hint = document.getElementById('hint');
 const instructions = document.getElementById('instructions');
-const radioBtnDiv = document.getElementById('radioBtn');
+const hint = document.getElementById('hint');
+const gameStats = document.getElementById('gameStats');
+const radioBtnDiv = document.getElementById('restartBtn');
 const restartBtn = document.getElementById('restart');
 const randWidth = Math.floor(Math.random() * window.innerWidth);
 const randHeight = Math.floor(Math.random() * window.innerHeight);
+let bestScore = localStorage.getItem('bestScore') == null ? MAX_VALUE : localStorage.getItem('bestScore');
 let numOfClicks = 0;
 let gameOver = false;
 
@@ -18,12 +20,20 @@ document.addEventListener('click', e => {
 
     const clickedWidth = e.clientX; 
     const clickedHeight = e.clientY;
-    console.log(clickedWidth + " " + clickedHeight)
     numOfClicks++;
 
     if (Math.abs(randWidth - clickedWidth) < 50 && Math.abs(randHeight - clickedHeight) < 50) {
         gameOver = true;
-        hint.innerHTML = `You won in ${numOfClicks} clicks!<br>The location was pixel ${randWidth}x${randHeight}.<br>Your winning guess was ${clickedWidth}x${clickedHeight}.`;
+        hint.innerHTML = "";
+        gameStats.innerHTML = `The pixel location was ${randWidth}x${randHeight}.<br>Your winning guess was ${clickedWidth}x${clickedHeight}.`;
+
+        if (numOfClicks < bestScore) {
+            localStorage.setItem('bestScore', numOfClicks);
+            gameStats.innerHTML += `<br>New Best Score: ${numOfClicks}`;
+        } else {
+            gameStats.innerHTML += `<br>Score: ${numOfClicks}<br>Previous Best Score: ${bestScore}`;
+        }
+
         radioBtnDiv.style.visibility = 'visible';
     } else if (Math.abs(randWidth - clickedWidth) < 100 && Math.abs(randHeight - clickedHeight) < 100) {
         hint.innerHTML = `ON FIRE!!!`;
