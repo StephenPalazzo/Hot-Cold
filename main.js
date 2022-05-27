@@ -5,7 +5,7 @@ const radioBtnDiv = document.getElementById('restartBtn');
 const restartBtn = document.getElementById('restart');
 const randWidth = Math.floor(Math.random() * window.innerWidth);
 const randHeight = Math.floor(Math.random() * window.innerHeight);
-let bestScore = localStorage.getItem('bestScore') == null ? MAX_VALUE : localStorage.getItem('bestScore');
+let bestScore = localStorage.getItem('bestScore');
 let numOfClicks = 0;
 let gameOver = false;
 
@@ -27,7 +27,7 @@ document.addEventListener('click', e => {
         hint.innerHTML = "";
         gameStats.innerHTML = `The pixel location was ${randWidth}x${randHeight}.<br>Your winning guess was ${clickedWidth}x${clickedHeight}.`;
 
-        if (numOfClicks < bestScore) {
+        if (bestScore == null || numOfClicks < bestScore) {
             localStorage.setItem('bestScore', numOfClicks);
             gameStats.innerHTML += `<br>New Best Score: ${numOfClicks}`;
         } else {
