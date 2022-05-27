@@ -22,7 +22,7 @@ document.addEventListener('click', e => {
     const clickedHeight = e.clientY;
     numOfClicks++;
 
-    if (Math.abs(randWidth - clickedWidth) < 50 && Math.abs(randHeight - clickedHeight) < 50) {
+    if (Math.abs(randWidth - clickedWidth) < (window.innerWidth / 32) && Math.abs(randHeight - clickedHeight) < (window.innerHeight / 32)) {
         gameOver = true;
         hint.innerHTML = "";
         gameStats.innerHTML = `The pixel location was ${randWidth}x${randHeight}.<br>Your winning guess was ${clickedWidth}x${clickedHeight}.`;
@@ -35,13 +35,13 @@ document.addEventListener('click', e => {
         }
 
         radioBtnDiv.style.visibility = 'visible';
-    } else if (Math.abs(randWidth - clickedWidth) < 100 && Math.abs(randHeight - clickedHeight) < 100) {
+    } else if (Math.abs(randWidth - clickedWidth) < (window.innerWidth / 16) && Math.abs(randHeight - clickedHeight) < (window.innerHeight / 16)) {
         hint.innerHTML = `ON FIRE!!!`;
-    } else if (Math.abs(randWidth - clickedWidth) < 200 && Math.abs(randHeight - clickedHeight) < 200) {
+    } else if (Math.abs(randWidth - clickedWidth) < (window.innerWidth / 8) && Math.abs(randHeight - clickedHeight) < (window.innerHeight / 8)) {
         hint.innerHTML = `HOT!`;
-    } else if (Math.abs(randWidth - clickedWidth) < 300 && Math.abs(randHeight - clickedHeight) < 300) {
+    } else if (Math.abs(randWidth - clickedWidth) < (window.innerWidth / 4) && Math.abs(randHeight - clickedHeight) < (window.innerHeight / 4)) {
         hint.innerHTML = `Warm`;
-    } else if (Math.abs(randWidth - clickedWidth) < 500 && Math.abs(randHeight - clickedHeight) < 500) {
+    } else if (Math.abs(randWidth - clickedWidth) < (window.innerWidth / 2) && Math.abs(randHeight - clickedHeight) < (window.innerHeight / 2)) {
         hint.innerHTML = `Cold`;
     } else {
         hint.innerHTML = `Freezing!`;
