@@ -29,7 +29,7 @@ document.addEventListener('click', (e) => {
     gameOver = true;
     hint.innerHTML = '';
     gameStats.style.visibility = 'visible';
-    gameStats.innerHTML = `Pixel Location: ${randWidth}x${randHeight}<br>Winning Guess: ${clickedWidth}x${clickedHeight}`;
+    gameStats.innerHTML = `Pixel Location: ${randWidth}x${randHeight}<br>Winning Guess: ${clickedWidth}x${clickedHeight}<br>`;
 
     if (bestScore == null || numOfClicks < bestScore) {
       localStorage.setItem('bestScore', numOfClicks);
